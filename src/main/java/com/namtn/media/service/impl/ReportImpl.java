@@ -52,12 +52,12 @@ public class ReportImpl implements ReportService {
     @Override
     public List<ReportVo> getListReport() {
         List<Report> reports = reportRepo.findAll();
+
         Set<String> emails = reports.stream().map(Report::getCreatedBy).collect(Collectors.toSet());
         Set<Long> postIds = reports.stream().map(Report::getPostId).collect(Collectors.toSet());
 
         Map<String, SimpleUserInfoVo> userMap = userInfoService.getSimpleInfo(new ArrayList<>(emails));
         Map<Long, Long> postMap = contentService.getContentOfPost(new ArrayList<>(postIds));
-
         return reports.stream().map(report -> {
             ReportVo vo = modelMapper.map(report, ReportVo.class);
             SimpleUserInfoVo user = userMap.get(report.getCreatedBy());
