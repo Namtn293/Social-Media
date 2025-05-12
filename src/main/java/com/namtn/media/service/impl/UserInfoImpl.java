@@ -106,7 +106,7 @@ public class UserInfoImpl implements UserInfoService {
         Specification<Follow> speImpact=SearchUtil.eq(Constants.IMPACT,userEmail);
         Specification<Follow> speTarget=SearchUtil.eq(Constants.TARGET,email);
         Optional<Follow> follow=followRepo.findOne(speTarget.and(speImpact));
-        if (follow==null){
+        if (!follow.isPresent()){
             Follow follow1=Follow.builder()
                     .impact(userEmail)
                     .target(email)
@@ -142,20 +142,9 @@ public class UserInfoImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfoDetailVo getMyProfile() {
+    public UserInfoDetailVo getMyProfile() throws BusinessException {
         String email=ThreadContext.getCurrentUser().getUsername();
-        Specification<User> speUser=SearchUtil.eq(Constants.User.EMAIL,email);
-        Specification<UserInfo> speUserInfo=SearchUtil.eq(Constants.User.EMAIL,email);
-        Optional<User> user=userRepository.findOne(speUser);
-        Optional<UserInfo> userInfo=userInfoRepo.findOne(speUserInfo);
-        UserInfoDetailVo vo=modelMapper.map(user, UserInfoDetailVo.class);
-        modelMapper.map(userInfo,vo);
-        vo.setAge(getAge(vo.getBirth()));
-        Specification<Follow> speFollowing=SearchUtil.eq(Constants.IMPACT,email);
-        Specification<Follow> speFollower=SearchUtil.eq(Constants.TARGET,email);
-        vo.setFollowing(followRepo.count(speFollowing));
-        vo.setFollower(followRepo.count(speFollower));
-        return vo;
+        return getUserDetail(email);
     }
 
     @Override

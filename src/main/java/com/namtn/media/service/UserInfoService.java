@@ -18,7 +18,7 @@ public interface UserInfoService {
     int getAge(Date date);
     void follow(String email);
     List<UserInfoSearchVo> searchUser(UserInfoSearchDto userInfoSearchDto);
-    UserInfoDetailVo getMyProfile();
+    UserInfoDetailVo getMyProfile() throws BusinessException;
     SimpleUserInfoVo getSimpleInfo(String email) throws BusinessException;
     Map<String, SimpleUserInfoVo> getSimpleInfo(List<String> emails);
     List<UserInfoSearchVo> searchFollowUser(UserFollowSearch userFollowSearch) throws BusinessException;
