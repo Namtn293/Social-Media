@@ -7,13 +7,21 @@ Security: Spring Security with JWT
 API Style: RESTful APIs
 Others: JPA/Hibernate, Lombok, ModelMapper, etc.
 📦 Features
+
 ✅ User registration and authentication (JWT-based)
+
 ✅ Profile management
+
 ✅ Post creation, editing, deletion
+
 ✅ Like and comment system
+
 ✅ Friend requests and connections
+
 ✅ Notifications (in-app)
+
 ✅ Admin dashboard (optional)
+
 🚀 Getting Started
 
 Prerequisites
