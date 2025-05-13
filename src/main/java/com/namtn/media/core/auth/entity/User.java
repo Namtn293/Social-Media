@@ -1,6 +1,7 @@
 package com.namtn.media.core.auth.entity;
 
 import com.namtn.media.core.auth.enumration.RoleEnum;
+import com.namtn.media.core.util.CommonUtil;
 import com.namtn.media.core.util.EntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -70,6 +71,7 @@ public class User extends EntityBase implements UserDetails {
         str.append(email);
         str.append(firstName);
         str.append(lastName);
+        this.fullTextSearch= CommonUtil.handleFullSearch(str.toString());
     }
 
     @PreUpdate
@@ -79,6 +81,7 @@ public class User extends EntityBase implements UserDetails {
         str.append(email);
         str.append(firstName);
         str.append(lastName);
+        this.fullTextSearch= CommonUtil.handleFullSearch(str.toString());
     }
 
     public String getFirstName() {

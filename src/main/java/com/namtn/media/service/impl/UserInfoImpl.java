@@ -191,12 +191,10 @@ public class UserInfoImpl implements UserInfoService {
             default:
                 throw new BusinessException(ExceptionEnum.INVALID_INPUT);
         }
-
         List<Follow> follows = followRepo.findAll(followSpec);
         if (follows.isEmpty()) {
             return Collections.emptyList();
         }
-
         List<String> relatedEmails = follows.stream()
                 .map(isFollower ? Follow::getTarget : Follow::getImpact)
                 .collect(Collectors.toList());
