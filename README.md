@@ -26,8 +26,6 @@ Others: JPA/Hibernate, Lombok, ModelMapper, etc.
 
 ✅ Friend requests and connections
 
-✅ Notifications (in-app)
-
 ✅ Admin dashboard (optional)
 
 🚀 Getting Started
